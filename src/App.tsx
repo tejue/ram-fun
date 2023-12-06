@@ -14,6 +14,7 @@ function App() {
         setCharacters(filteredCharacter);
     }
 
+
     return (
         <>
             <label htmlFor="search">Suche: <input id="search" onChange={handleSearchCharacter}/></label>
