@@ -7,16 +7,22 @@ type CharacterFormProps = {
 export default function CharacterForm(props: CharacterFormProps) {
 
     const [characterName, setCharacterName] = useState<string>("")
+    const [characterStatus, setCharacterStatus] = useState<string>("")
 
     function handleCharacterName(event: ChangeEvent<HTMLInputElement>) {
         setCharacterName(event.target.value)
     }
 
+    function handleCharacterStatus(event: ChangeEvent<HTMLSelectElement>) {
+        setCharacterStatus(event.target.value)
+    }
+
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        const newCharacter: Character = {name: characterName}
+        const newCharacter: Character = {name: characterName, status: characterStatus}
         props.addNewCharacter(newCharacter)
         setCharacterName("")
+        setCharacterStatus("")
     }
 
     return (
@@ -34,8 +40,8 @@ export default function CharacterForm(props: CharacterFormProps) {
                 <select
                     name="status"
                     id="status"
-                    value={""}
-
+                    value={characterStatus}
+                    onChange={handleCharacterStatus}
                 >
                     <option value="unknown">Unkown</option>
                     <option value="alive">Alive</option>

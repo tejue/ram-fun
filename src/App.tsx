@@ -25,15 +25,15 @@ function App() {
             <CharacterForm addNewCharacter={updateCharacter}/>
             <InputSearch handleInputSearch={handleSearchCharacter}/>
 
-            {searchTerm.length > 0 ?
-                characters.map((character: Character) =>
+
+            {characters.map((character: Character) =>
                     <CharacterList
                         key={character.id}
                         name={character.name}
                         image={character.image}
                         status={character.status}
                         species={character.species}/>
-                ) : <p>Bitte gib einen Characternamen ein.</p>}
+                )}
 
         </>
     )

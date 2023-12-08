@@ -12,7 +12,7 @@ export default function CharacterList({name, image, status, species}: CharacterL
     return (
 
         <ul>
-            <img src={image} alt={name}/>
+            <img src={image} alt={"picture of "+name}/>
             <p>{name}, {status}</p>
             <p>{species}</p>
         </ul>
