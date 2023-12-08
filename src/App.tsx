@@ -13,16 +13,20 @@ function App() {
     const [characters, setCharacters] = useState<Characterli[]>([])
     const [searchTerm, setSearchTerm] = useState<string>("");
 
-    const [id, setId]= useState<number>(1)
+    const [pageId, setPageId] = useState<number>(1)
 
     useEffect(
-        () => fetchData
-        , [id]
+        () => fetchData()
+        , [pageId]
     )
-    function fetchData(){
-        axios.get("https://rickandmortyapi.com/api/character")
-            .then((response) => setCharacters(response.data.results))
-            .catch((error)=> console.log(error.message))
+
+    function fetchData() {
+        axios.get(`https://rickandmortyapi.com/api/character?page=${pageId}`)
+            .then((response) => {
+                console.log('API Response:', response.data);
+                setCharacters(response.data.results);
+            })
+            .catch((error) => console.log(error.message))
     }
 
     function handleSearchCharacter(search: string) {
@@ -36,10 +40,17 @@ function App() {
         setCharacters([...characters, newCharacter])
     }
 
+    function pagination() {
+        /* setPageId((prevPageId) => prevPageId + 1)*/
+        pageId < 42 ? setPageId(pageId + 1) : alert("no more characters so no more pages");
+    }
+
     return (
         <>
             <CharacterForm addNewCharacter={updateCharacter}/>
             <InputSearch handleInputSearch={handleSearchCharacter}/>
+            <br/>
+            <button onClick={pagination}>{">>> next 20 Characters >>>"}</button>
             {characters.map((character: Character) =>
                 <CharacterList
                     key={character.id}
@@ -48,6 +59,7 @@ function App() {
                     status={character.status}
                     species={character.species}/>
             )}
+
 
         </>
     )
