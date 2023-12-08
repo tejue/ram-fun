@@ -5,6 +5,7 @@ import CharacterList from "./CharacterList.tsx";
 import InputSearch from "./InputSearch.tsx";
 import CharacterForm from "./CharacterForm.tsx";
 import {Characterli} from "./Characterli.ts";
+import axios from "axios";
 
 function App() {
 
