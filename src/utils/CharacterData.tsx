@@ -1,12 +1,12 @@
-export type Character = {
-    id: number;
-    name: string;
-    status: string;
-    species: string;
-    image: string;
+ export type Character = {
+    id?: number;
+    name?: string;
+    status?: string;
+    species?: string;
+    image?: string;
 }
 
-export const characterData: Character[] = [{
+export const characterData:Character[] = [{
     id: 1,
     name: "Rick Sanchez",
     status: "Alive",
