@@ -4,8 +4,10 @@ import {Character, characterData} from "./utils/CharacterData.tsx";
 import CharacterList from "./CharacterList.tsx";
 import InputSearch from "./InputSearch.tsx";
 import CharacterForm from "./CharacterForm.tsx";
+import {Characterli} from "./Characterli.ts";
 
 function App() {
+
     const [characters, setCharacters] = useState<Character[]>(characterData)
     const [searchTerm, setSearchTerm] = useState<string>("");
 
