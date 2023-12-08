@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './App.css'
 import {Character, characterData} from "./utils/CharacterData.tsx";
 import CharacterList from "./CharacterList.tsx";
@@ -10,12 +10,18 @@ import axios from "axios";
 function App() {
 
     //const [characters, setCharacters] = useState<Character[]>(characterData)
-    const [characters, setCharacters] = useState<Characterli>({})
+    const [characters, setCharacters] = useState<Characterli[]>([])
     const [searchTerm, setSearchTerm] = useState<string>("");
 
+    const [id, setId]= useState<number>(1)
+
+    useEffect(
+        () => fetchData
+        , [id]
+    )
     function fetchData(){
         axios.get("https://rickandmortyapi.com/api/character")
-            .then((response) => setCharacters(response.data))
+            .then((response) => setCharacters(response.data.results))
             .catch((error)=> console.log(error.message))
     }
 
@@ -34,8 +40,6 @@ function App() {
         <>
             <CharacterForm addNewCharacter={updateCharacter}/>
             <InputSearch handleInputSearch={handleSearchCharacter}/>
-
-
             {characters.map((character: Character) =>
                 <CharacterList
                     key={character.id}
