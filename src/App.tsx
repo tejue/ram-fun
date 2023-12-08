@@ -18,6 +18,7 @@ function App() {
 
     return (
         <>
+            <CharacterForm/>
             <InputSearch handleInputSearch={handleSearchCharacter}/>
 
             {searchTerm.length > 0 ?
@@ -29,7 +30,7 @@ function App() {
                         status={character.status}
                         species={character.species}/>
                 ) : <p>Bitte gib einen Characternamen ein.</p>}
-            <CharacterForm/>
+
         </>
     )
 }

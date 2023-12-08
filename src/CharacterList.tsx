@@ -18,4 +18,3 @@ export default function CharacterList({name, image, status, species}: CharacterL
         </ul>
     )
 }
-
