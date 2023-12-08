@@ -8,8 +8,15 @@ import {Characterli} from "./Characterli.ts";
 
 function App() {
 
-    const [characters, setCharacters] = useState<Character[]>(characterData)
+    //const [characters, setCharacters] = useState<Character[]>(characterData)
+    const [characters, setCharacters] = useState<Characterli>({})
     const [searchTerm, setSearchTerm] = useState<string>("");
+
+    function fetchData(){
+        axios.get("https://rickandmortyapi.com/api/character")
+            .then((response) => setCharacters(response.data))
+            .catch((error)=> console.log(error.message))
+    }
 
     function handleSearchCharacter(search: string) {
         setSearchTerm(search);
@@ -18,7 +25,7 @@ function App() {
         setCharacters(filteredCharacter);
     }
 
-    function updateCharacter(newCharacter:Character){
+    function updateCharacter(newCharacter: Character) {
         setCharacters([...characters, newCharacter])
     }
 
@@ -29,13 +36,13 @@ function App() {
 
 
             {characters.map((character: Character) =>
-                    <CharacterList
-                        key={character.id}
-                        name={character.name}
-                        image={character.image}
-                        status={character.status}
-                        species={character.species}/>
-                )}
+                <CharacterList
+                    key={character.id}
+                    name={character.name}
+                    image={character.image}
+                    status={character.status}
+                    species={character.species}/>
+            )}
 
         </>
     )
