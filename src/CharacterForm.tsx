@@ -1,17 +1,22 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import {Character} from "./utils/CharacterData.tsx";
 
-export default function CharacterForm() {
+type CharacterFormProps = {
+    addNewCharacter: (newCharacter: Character) => void
+}
+export default function CharacterForm(props: CharacterFormProps) {
 
     const [characterName, setCharacterName] = useState<string>("")
 
     function handleCharacterName(event: ChangeEvent<HTMLInputElement>) {
         setCharacterName(event.target.value)
     }
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-        const newCharacter: Character = {name:characterName}
 
+    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        const newCharacter: Character = {name: characterName}
+        props.addNewCharacter(newCharacter)
+        setCharacterName("")
     }
 
     return (

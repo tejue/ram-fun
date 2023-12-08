@@ -16,9 +16,13 @@ function App() {
         setCharacters(filteredCharacter);
     }
 
+    function updateCharacter(newCharacter:Character){
+        setCharacters([...characters, newCharacter])
+    }
+
     return (
         <>
-            <CharacterForm/>
+            <CharacterForm addNewCharacter={updateCharacter}/>
             <InputSearch handleInputSearch={handleSearchCharacter}/>
 
             {searchTerm.length > 0 ?
